@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		12516E002E3ECA19D2DB7301 /* Pods_Ozinshe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 542D7E6902C6B625E38C794F /* Pods_Ozinshe.framework */; };
 		7820CFC21CFC45254EEB92EA /* Pods_Ozinshe_OzinsheUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2083DD7704EDDD916D9E47 /* Pods_Ozinshe_OzinsheUITests.framework */; };
+		8F2F66D72B0C826A00B056FF /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F66D62B0C826A00B056FF /* LanguageViewController.swift */; };
+		8F2F66D92B0CD97900B056FF /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F66D82B0CD97900B056FF /* TermsViewController.swift */; };
+		8F48BB0C2B0B4434008812F2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8F48BB0E2B0B4434008812F2 /* Localizable.strings */; };
 		8F6181A82B086C8300A34CEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6181A72B086C8300A34CEF /* AppDelegate.swift */; };
 		8F6181AA2B086C8300A34CEF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6181A92B086C8300A34CEF /* SceneDelegate.swift */; };
 		8F6181AC2B086C8300A34CEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6181AB2B086C8300A34CEF /* ViewController.swift */; };
@@ -52,6 +55,11 @@
 		2C94899ACADA15CAFB3F2943 /* Pods-OzinsheTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OzinsheTests.release.xcconfig"; path = "Target Support Files/Pods-OzinsheTests/Pods-OzinsheTests.release.xcconfig"; sourceTree = "<group>"; };
 		490C84C1883B902BE070DFCF /* Pods-Ozinshe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ozinshe.release.xcconfig"; path = "Target Support Files/Pods-Ozinshe/Pods-Ozinshe.release.xcconfig"; sourceTree = "<group>"; };
 		542D7E6902C6B625E38C794F /* Pods_Ozinshe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ozinshe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F2F66D62B0C826A00B056FF /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		8F2F66D82B0CD97900B056FF /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		8F48BB0D2B0B4434008812F2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F48BB0F2B0B4449008812F2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8F48BB102B0B446E008812F2 /* kk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = kk; path = kk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8F6181A42B086C8300A34CEF /* Ozinshe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ozinshe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F6181A72B086C8300A34CEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F6181A92B086C8300A34CEF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,9 +138,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F08B6972B0DD6ED00E6C93E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8F2F66D62B0C826A00B056FF /* LanguageViewController.swift */,
+				8F2F66D82B0CD97900B056FF /* TermsViewController.swift */,
+				8F6181E02B08757D00A34CEF /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		8F61819B2B086C8300A34CEF = {
 			isa = PBXGroup;
 			children = (
+				8F48BB0E2B0B4434008812F2 /* Localizable.strings */,
 				8F6181A62B086C8300A34CEF /* Ozinshe */,
 				8F6181BD2B086C8400A34CEF /* OzinsheTests */,
 				8F6181C72B086C8400A34CEF /* OzinsheUITests */,
@@ -188,11 +207,11 @@
 		8F6181DD2B08755700A34CEF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F08B6972B0DD6ED00E6C93E /* Profile */,
 				8F6181D92B08753700A34CEF /* HomeViewController.swift */,
 				8F6181DB2B08754700A34CEF /* SearchViewController.swift */,
 				8F6181DE2B08757200A34CEF /* FavoritesViewController.swift */,
 				8F6181E22B08AC9E00A34CEF /* MovieTableViewCell.swift */,
-				8F6181E02B08757D00A34CEF /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +317,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				kk,
 			);
 			mainGroup = 8F61819B2B086C8300A34CEF;
 			productRefGroup = 8F6181A52B086C8300A34CEF /* Products */;
@@ -317,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FBA1DAA2B08E39D0042D388 /* SF-Pro-Display-Semibold.otf in Resources */,
+				8F48BB0C2B0B4434008812F2 /* Localizable.strings in Resources */,
 				8F6181B42B086C8400A34CEF /* LaunchScreen.storyboard in Resources */,
 				8FBA1DAC2B08E39D0042D388 /* SFProDisplay-Bold.ttf in Resources */,
 				8F6181B12B086C8400A34CEF /* Assets.xcassets in Resources */,
@@ -448,6 +470,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F2F66D92B0CD97900B056FF /* TermsViewController.swift in Sources */,
+				8F2F66D72B0C826A00B056FF /* LanguageViewController.swift in Sources */,
 				8F6181DC2B08754700A34CEF /* SearchViewController.swift in Sources */,
 				8F6181DA2B08753700A34CEF /* HomeViewController.swift in Sources */,
 				8F6181E32B08AC9E00A34CEF /* MovieTableViewCell.swift in Sources */,
@@ -493,6 +517,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8F48BB0E2B0B4434008812F2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F48BB0D2B0B4434008812F2 /* en */,
+				8F48BB0F2B0B4449008812F2 /* ru */,
+				8F48BB102B0B446E008812F2 /* kk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8F6181B22B086C8400A34CEF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -508,6 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -568,6 +603,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

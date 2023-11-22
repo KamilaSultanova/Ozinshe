@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "1DA516B4-8E61-4FCD-A464-B97112BA3B90"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EC9B687-6766-405C-9A6F-4B9EB5780502"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ozinshe/Controllers/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "languageDidChange()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6EC9B687-6766-405C-9A6F-4B9EB5780502 - 1f5c373c6748b1b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe.ProfileViewController.languageDidChange() -&gt; ()"
+                  moduleName = "Ozinshe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamilasultanova/Desktop/Ozinshe%20project/Ozinshe/Ozinshe/Controllers/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "472">
+               </Location>
+               <Location
+                  uuid = "6EC9B687-6766-405C-9A6F-4B9EB5780502 - 1f5c373c6748b1b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe.ProfileViewController.languageDidChange() -&gt; ()"
+                  moduleName = "Ozinshe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamilasultanova/Desktop/Ozinshe%20project/Ozinshe/Ozinshe/Controllers/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "712">
+               </Location>
+               <Location
+                  uuid = "6EC9B687-6766-405C-9A6F-4B9EB5780502 - 1f5c373c6748b75d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe.ProfileViewController.languageDidChange() -&gt; ()"
+                  moduleName = "Ozinshe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamilasultanova/Desktop/Ozinshe%20project/Ozinshe/Ozinshe/Controllers/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "476">
+               </Location>
+               <Location
+                  uuid = "6EC9B687-6766-405C-9A6F-4B9EB5780502 - 1f5c373c6748b75d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Ozinshe.ProfileViewController.languageDidChange() -&gt; ()"
+                  moduleName = "Ozinshe"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kamilasultanova/Desktop/Ozinshe%20project/Ozinshe/Ozinshe/Controllers/ProfileViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "716">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "79C06366-9BB8-4ED4-9F3D-DAB409091CDE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Ozinshe/Controllers/ProfileViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "languageDidChange()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
