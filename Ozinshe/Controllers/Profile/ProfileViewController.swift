@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 import Localize_Swift
+import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 
 class ProfileViewController: UIViewController, LanguageProtocol {
     
@@ -88,10 +91,10 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         }
         
         return view
+        
     }()
     
-   
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -100,14 +103,13 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.title = "PROFILE".localized()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
-
+        
+        
         setupUI()
-
+        loadUserData()
+        
     }
     
-    @objc func logoutBtn(){
-        print("Do you want to log out?")
-    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,8 +119,8 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     
     func languageDidChange() {
         if let label = personalDataButton.viewWithTag(1002) as? UILabel {
-                label.text = "EDIT".localized()
-            }
+            label.text = "EDIT".localized()
+        }
         if let label = languageButton.viewWithTag(1003) as? UILabel {
             if Localize.currentLanguage() == "en"{
                 label.text = "English"
@@ -131,26 +133,26 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             }
         }
         if let button = personalDataButton.viewWithTag(1004) as? UIButton {
-                button.setTitle("PERSONAL_DATA".localized(), for: .normal)
-            }
+            button.setTitle("PERSONAL_DATA".localized(), for: .normal)
+        }
         if let button = passwordButton.viewWithTag(1005) as? UIButton {
-                button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
-            }
+            button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
+        }
         if let button = languageButton.viewWithTag(1006) as? UIButton {
-                button.setTitle("LANGUAGE".localized(), for: .normal)
-            }
+            button.setTitle("LANGUAGE".localized(), for: .normal)
+        }
         if let button = termsButton.viewWithTag(1007) as? UIButton {
-                button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
-            }
+            button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
+        }
         if let button = notificationButton.viewWithTag(1008) as? UIButton {
-                button.setTitle("NOTIFICATIONS".localized(), for: .normal)
-            }
+            button.setTitle("NOTIFICATIONS".localized(), for: .normal)
+        }
         if let button = DarkModeButton.viewWithTag(1008) as? UIButton {
-                button.setTitle("DARK_MODE".localized(), for: .normal)
-            }
+            button.setTitle("DARK_MODE".localized(), for: .normal)
+        }
         titleLabel.text = "MY_PROFILE".localized()
         navigationItem.title = "PROFILE".localized()
-
+        
         
     }
     
@@ -198,6 +200,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         button.setTitle("PERSONAL_DATA".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.addTarget(self, action: #selector(personalDataTapped), for: .touchUpInside)
         button.contentHorizontalAlignment = .left
         button.tag = 1004
         
@@ -220,7 +223,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.horizontalEdges.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-                
+        
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
@@ -237,7 +240,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.centerY.equalToSuperview()
             make.right.equalTo(iv.snp.left).offset(-8)
         }
-    
+        
         return view
     }()
     
@@ -252,6 +255,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
         button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(passwordTapped), for: .touchUpInside)
         button.tag = 1005
         
         lineView.backgroundColor = UIColor(named: "ViewLineColor")
@@ -261,14 +265,14 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         view.addSubview(lineView)
         view.addSubview(button)
         view.addSubview(iv)
-
+        
         
         button.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-                
+        
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
@@ -281,7 +285,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.centerY.equalToSuperview()
         }
         
-    
+        
         return view
     }()
     
@@ -320,7 +324,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.horizontalEdges.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-                
+        
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
@@ -337,7 +341,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.centerY.equalToSuperview()
             make.right.equalTo(iv.snp.left).offset(-8)
         }
-    
+        
         return view
     }()
     
@@ -363,14 +367,14 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         view.addSubview(lineView)
         view.addSubview(button)
         view.addSubview(iv)
-
+        
         
         button.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-                
+        
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
@@ -383,7 +387,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
             make.centerY.equalToSuperview()
         }
         
-    
+        
         return view
     }()
     
@@ -402,18 +406,20 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         lineView.backgroundColor = UIColor(named: "ViewLineColor")
         notificationSwitch.onTintColor = UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1)
-                
+        notificationSwitch.addTarget(self, action: #selector(notsChanged), for: .valueChanged)
+        notificationSwitch.tag = 2001
+        
         view.addSubview(lineView)
         view.addSubview(button)
         view.addSubview(notificationSwitch)
- 
+        
         
         button.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-                
+        
         lineView.snp.makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalToSuperview()
@@ -442,10 +448,12 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         button.tag = 1009
         
         modeSwitch.onTintColor = UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1)
-                
+        modeSwitch.addTarget(self, action: #selector(modeChanged), for: .valueChanged)
+        modeSwitch.tag = 2002
+        
         view.addSubview(button)
         view.addSubview(modeSwitch)
- 
+        
         
         button.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -460,8 +468,22 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         return view
     }()
-
-//MARK: Buttons actions
+    
+    //MARK: Buttons actions
+    
+    @objc func personalDataTapped(){
+        let personalVC = PersonalDataViewController()
+        
+        navigationController?.show(personalVC, sender: self)
+    }
+    
+    @objc func passwordTapped(){
+        let passwordVC = PasswordViewController()
+        
+        navigationController?.show(passwordVC, sender: self)
+        
+    }
+    
     @objc func languageShow(){
         let languageVC = LanguageViewController()
         languageVC.modalPresentationStyle = .overFullScreen
@@ -477,5 +499,75 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         navigationController?.show(termsVC, sender: self)
     }
     
-
+    @objc func logoutBtn(){
+        let logoutVC = LogoutViewController()
+        
+        logoutVC.modalPresentationStyle = .overFullScreen
+        
+        present(logoutVC, animated: true)
+    }
+    
+    @objc func notsChanged(){
+        if let notificationSwitch = notificationButton.viewWithTag(2001) as? UISwitch {
+            if notificationSwitch.isOn {
+                let alert = UIAlertController(title: "ALERT".localized(), message: "NOTIFICATIONS_ON".localized(), preferredStyle: .alert)
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }else{
+                let alert = UIAlertController(title: "ALERT".localized(), message: "NOTIFICATIONS_OFF".localized(), preferredStyle: .alert)
+                self.present(alert, animated: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+        
+    }
+    
+    @objc func modeChanged(){
+        if let modeSwitch = DarkModeButton.viewWithTag(2002) as? UISwitch {
+            if modeSwitch.isOn{
+                modeSwitch.window?.overrideUserInterfaceStyle = .dark
+            }
+            else{
+                modeSwitch.window?.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+    
+    func loadUserData() {
+        SVProgressHUD.show()
+        
+        let headers: HTTPHeaders = ["Authorization": "Bearer \(Storage.sharedInstance.accessToken)"]
+        
+        AF.request(Urls.GET_PROFILE, method: .get, headers: headers).responseData { response in
+            SVProgressHUD.dismiss()
+            
+            var resultString = ""
+            if let data = response.data{
+                resultString = String(data: data, encoding: .utf8)!
+                print(resultString)
+            }
+            
+            if response.response?.statusCode == 200{
+                let json = JSON(response.data!)
+                print("JSON: \(json)")
+                
+                
+                if let email = json["user"]["email"].string {
+                    self.emailLabel.text = email
+                }
+                
+            } else {
+                SVProgressHUD.showError(withStatus: "Failed")
+                
+            }
+        }
+    }
+    
+    
 }

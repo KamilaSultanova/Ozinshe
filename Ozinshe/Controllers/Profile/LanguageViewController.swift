@@ -84,7 +84,8 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(303)
             make.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
+
         }
         
         lineView.snp.makeConstraints { make in
