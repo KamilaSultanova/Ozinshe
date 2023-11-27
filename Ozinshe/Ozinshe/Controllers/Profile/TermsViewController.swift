@@ -24,13 +24,21 @@ class TermsViewController: UIViewController {
 
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.title = "TERM_&_CONDITIONS".localized()
+        let backButton = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: self, action: #selector(backButtonClicked))
+        backButton.tintColor = UIColor(named: "arrowColor")
+        navigationItem.leftBarButtonItem = backButton
         
         view.addSubview(text)
         
         text.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
 
+    }
+    
+    @objc func backButtonClicked(){
+        navigationController?.popToRootViewController(animated: true)
     }
     
 

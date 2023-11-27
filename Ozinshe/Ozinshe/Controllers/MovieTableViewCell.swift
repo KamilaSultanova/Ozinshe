@@ -25,7 +25,7 @@ class MovieTableViewCell: UITableViewCell {
         
         label.text = "Movie Name"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
-        label.textColor = UIColor(red: 0.07, green: 0.09, blue: 0.15, alpha: 1)
+        label.textColor = UIColor(named: "FontColor")
         
         return label
     }()
@@ -50,7 +50,7 @@ class MovieTableViewCell: UITableViewCell {
         view.addSubview(iv)
         view.addSubview(label)
         
-        view.backgroundColor = UIColor(red: 0.97, green: 0.93, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor(named: "WatchButtonColor")
         view.layer.cornerRadius = 8
         
         
