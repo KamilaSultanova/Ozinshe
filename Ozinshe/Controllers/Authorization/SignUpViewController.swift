@@ -38,6 +38,7 @@ class SignUpViewController: UIViewController {
         
         tf.placeholder = "ENTER_EMAIL".localized()
         tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -63,6 +64,7 @@ class SignUpViewController: UIViewController {
         let passwordIV = UIImageView()
         
         tf.placeholder = "ENTER_PASSWORD".localized()
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -89,6 +91,7 @@ class SignUpViewController: UIViewController {
         let passwordIV = UIImageView()
         
         tf.placeholder = "ENTER_PASSWORD".localized()
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor

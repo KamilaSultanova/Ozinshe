@@ -11,7 +11,6 @@ import SnapKit
 class MovieTableViewCell: UITableViewCell {
     let posterImage: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "yoga2")
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 8
         iv.clipsToBounds = true
@@ -23,7 +22,6 @@ class MovieTableViewCell: UITableViewCell {
         
         let label = UILabel()
         
-        label.text = "Movie Name"
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
         label.textColor = UIColor(named: "FontColor")
         
@@ -34,7 +32,6 @@ class MovieTableViewCell: UITableViewCell {
         
         let label = UILabel()
         
-        label.text = "Genre Name"
         label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         
@@ -55,7 +52,7 @@ class MovieTableViewCell: UITableViewCell {
         
         
         iv.image = UIImage(named: "Play")
-        label.text = "Watch"
+        label.text = "WATCH".localized()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 12)
         label.textColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1)
         
@@ -77,6 +74,7 @@ class MovieTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: "BackgroundColor")
         setupCell()
     }
     
@@ -116,6 +114,12 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
+    func setData(movie: Movie) {
+        titlelabel.text = movie.name
+        genrelabel.text = "\(movie.year) • \(movie.genres.first!.name) • \(movie.categories.first!.name)"
+        posterImage.sd_setImage(with: URL(string: movie.poster_link))
+
+    }
     
 
 }

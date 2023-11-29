@@ -23,13 +23,11 @@ class TabBarController: UITabBarController {
     
     func setTabs(){
         let homeVC = HomeViewController()
-        let seacrhVC = SearchViewController()
-        let favoritesVC = FavoritesViewController()
-//        var profileVC = ProfileViewController()
-        
+        let seacrhVC = UINavigationController(rootViewController: SearchViewController())
+        var favoritesVC = UINavigationController(rootViewController: FavoritesViewController())
         var profileVC = UINavigationController(rootViewController: ProfileViewController())
-        profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Profile"), selectedImage: UIImage(named: "ProfileSelected"))
         
+        profileVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Profile"), selectedImage: UIImage(named: "ProfileSelected"))
         homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Home"), selectedImage: UIImage(named: "HomeSelected"))
         seacrhVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Search"), selectedImage: UIImage(named: "SearchSelected"))
         favoritesVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "Favorite"), selectedImage: UIImage(named: "FavoriteSelected"))

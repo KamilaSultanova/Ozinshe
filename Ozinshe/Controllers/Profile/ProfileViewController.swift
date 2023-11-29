@@ -100,7 +100,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         
         // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(named: "BackgroundColor")
+        view.backgroundColor = UIColor(named: "TabBarColor")
         navigationItem.title = "PROFILE".localized()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
         
@@ -199,7 +199,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("PERSONAL_DATA".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.addTarget(self, action: #selector(personalDataTapped), for: .touchUpInside)
         button.contentHorizontalAlignment = .left
         button.tag = 1004
@@ -210,7 +210,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         label.tag = 1002
         label.text = "EDIT".localized()
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         
         view.addSubview(lineView)
@@ -253,7 +253,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(passwordTapped), for: .touchUpInside)
         button.tag = 1005
@@ -299,7 +299,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("LANGUAGE".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(languageShow), for: .touchUpInside)
         button.tag = 1006
@@ -309,7 +309,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         iv.image = UIImage(named: "arrow")
         
         
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         label.tag = 1003
         label.text = "Select"
@@ -354,7 +354,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(termsClicked), for: .touchUpInside)
         button.tag = 1007
@@ -400,7 +400,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("NOTIFICATIONS".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.tag = 1008
         
@@ -443,7 +443,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("DARK_MODE".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.tag = 1009
         

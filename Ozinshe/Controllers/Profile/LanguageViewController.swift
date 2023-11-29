@@ -56,6 +56,7 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
         tv.delegate = self
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        
 
         return tv
     }()
@@ -127,6 +128,7 @@ extension LanguageViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = UIColor(named: "TabBarColor")
         
         let label = UILabel()
         label.text = languageArray[indexPath.row][0]
