@@ -22,7 +22,7 @@ class TabBarController: UITabBarController {
 //    }
     
     func setTabs(){
-        let homeVC = HomeViewController()
+        let homeVC = UINavigationController(rootViewController: HomeViewController())
         let seacrhVC = UINavigationController(rootViewController: SearchViewController())
         var favoritesVC = UINavigationController(rootViewController: FavoritesViewController())
         var profileVC = UINavigationController(rootViewController: ProfileViewController())
