@@ -59,8 +59,8 @@
 "MINIMIZE" = "Read less";
 "SHARE" = "Share";
 "ADD_TO_FAV" = "Add to favorite";
-"DIRECTOR" = "Director";
-"PRODUCER" = "Producer";
+"DIRECTOR" = "Director:";
+"PRODUCER" = "Producer:";
 "SERIES" = "Series";
 "SCREENSHOTS" = "Screenshots";
 "SIMILAR" = "Similar";

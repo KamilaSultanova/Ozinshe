@@ -1,17 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Profile.pdf",
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        }
-      ],
-      "filename" : "ProfileSelectedpdf.pdf",
+      "filename" : "Profile-3.pdf",
       "idiom" : "universal"
     }
   ],

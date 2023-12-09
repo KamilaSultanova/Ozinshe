@@ -191,6 +191,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor(named: "BackgroundColor")
+        navigationController?.navigationItem.leftBarButtonItem?.tintColor = UIColor(named: "arrowColor")
         
         setupUI()
         hideKeyboardWhenTapped()

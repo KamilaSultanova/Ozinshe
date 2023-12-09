@@ -59,8 +59,8 @@
 "MINIMIZE" = "Свернуть";
 "SHARE" = "Поделиться";
 "ADD_TO_FAV" = "Добавить в избранное";
-"DIRECTOR" = "Режиссер";
-"PRODUCER" = "Продюссер";
+"DIRECTOR" = "Режиссер:";
+"PRODUCER" = "Продюссер:";
 "SERIES" = "Серии";
 "SCREENSHOTS" = "Скриншоты";
 "SIMILAR" = "Похожие";

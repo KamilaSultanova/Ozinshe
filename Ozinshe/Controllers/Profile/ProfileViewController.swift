@@ -101,9 +101,9 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         // Do any additional setup after loading the view.
         view.backgroundColor = UIColor(named: "TabBarColor")
-        navigationItem.title = "PROFILE".localized()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
-        
+//        navigationItem.title = "PROFILE".localized()
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
+//
         
         setupUI()
         loadUserData()
@@ -114,7 +114,18 @@ class ProfileViewController: UIViewController, LanguageProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = "PROFILE".localized()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
         languageDidChange()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = ""
+        navigationController?.navigationBar.tintColor = .black
+        
     }
     
     func languageDidChange() {

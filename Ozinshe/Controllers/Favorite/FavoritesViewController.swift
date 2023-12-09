@@ -42,6 +42,9 @@ class FavoritesViewController: UIViewController {
 //            }
 //        }
 }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.backgroundColor = UIColor(named: "TabBarColor")
+    }
     
     func setupUI(){
         
