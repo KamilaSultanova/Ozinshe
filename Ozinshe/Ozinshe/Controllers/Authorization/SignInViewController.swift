@@ -38,6 +38,7 @@ class SignInViewController: UIViewController {
         
         tf.placeholder = "ENTER_EMAIL".localized()
         tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -63,6 +64,7 @@ class SignInViewController: UIViewController {
         let passwordIV = UIImageView()
         
         tf.placeholder = "ENTER_PASSWORD".localized()
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -81,7 +83,6 @@ class SignInViewController: UIViewController {
             make.centerY.equalToSuperview()
         }
         
-      
         return tf
     }()
     
@@ -147,6 +148,16 @@ class SignInViewController: UIViewController {
         return view
     }()
     
+    let errorLabel = {
+        let label = UILabel()
+        
+        label.textColor = .red
+        label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
+        label.text = "EMPTY".localized()
+        
+        return label
+    }()
+    
     let saveButton = {
         let button = UIButton()
         
@@ -189,10 +200,21 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor(named: "BackgroundColor")
+        navigationController?.setNavigationBarHidden(false, animated: true)
         
         setupUI()
+        setupConstraints()
         hideKeyboardWhenTapped()
     }
+  
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationItem.title = ""
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = UIColor(named: "arrowColor")
+    }
+
     
     func setupUI(){
         view.addSubview(greetLabel)
@@ -201,8 +223,10 @@ class SignInViewController: UIViewController {
         view.addSubview(saveButton)
         view.addSubview(questionLabel)
         view.addSubview(registerBtn)
-        
-        
+        view.addSubview(errorLabel)
+    }
+    
+    func setupConstraints(){
         greetLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -232,18 +256,22 @@ class SignInViewController: UIViewController {
         }
         
         registerBtn.snp.makeConstraints { make in
-//            make.top.equalTo(questionLabel)
             make.right.equalToSuperview().inset(24)
             make.centerY.equalTo(questionLabel)
            
         }
-        
     }
-    
     
     @objc func textEditDidBegin(_ sender: TextFieldWithPadding) {
         sender.layer.borderColor = UIColor(red: 0.59, green: 0.33, blue: 0.94, alpha: 1.00).cgColor
-      
+        
+        errorLabel.isHidden = true
+        
+        saveButton.snp.remakeConstraints { make in
+            make.top.equalTo(tfView.snp.bottom).offset(40)
+            make.horizontalEdges.equalToSuperview().inset(24)
+            make.height.equalTo(56)
+        }
     }
     
     
@@ -278,41 +306,59 @@ class SignInViewController: UIViewController {
         let email = textfield1.text!
         let password = textfield2.text!
         
-        SVProgressHUD.show()
-        
-        let parameters = [
-            "email": email,
-            "password":password
-        ]
-        
-        AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
-            SVProgressHUD.dismiss()
-            var resultString = ""
-            if let data = response.data {
-                resultString = String(data: data, encoding: .utf8)!
-                print(resultString)
+        if email.isEmpty || password.isEmpty {
+            errorLabel.isHidden = false
+            
+            errorLabel.snp.makeConstraints { make in
+                make.top.equalTo(tfView.snp.bottom).offset(24)
+                make.horizontalEdges.equalToSuperview().inset(24)
             }
             
-            if response.response?.statusCode == 200 {
-                let json = JSON(response.data!)
-                print("JSON: \(json)")
+            saveButton.snp.remakeConstraints { make in
+                make.top.equalTo(errorLabel.snp.bottom).offset(24)
+                make.horizontalEdges.equalToSuperview().inset(24)
+                make.height.equalTo(56)
+            }
+            
+        }else{
+          
+            SVProgressHUD.show()
+            
+            let parameters = [
+                "email": email,
+                "password":password
+            ]
+            
+            AF.request(Urls.SIGN_IN_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseData { response in
+                SVProgressHUD.dismiss()
+                var resultString = ""
+                if let data = response.data {
+                    resultString = String(data: data, encoding: .utf8)!
+                    print(resultString)
+                }
                 
-                if let token = json["accessToken"].string {
-                    Storage.sharedInstance.accessToken = token
-                    UserDefaults.standard.set(token, forKey: "accessToken")
-                    self.startApp()
+                if response.response?.statusCode == 200 {
+                    let json = JSON(response.data!)
+                    print("JSON: \(json)")
+                    
+                    if let token = json["accessToken"].string {
+                        Storage.sharedInstance.accessToken = token
+                        UserDefaults.standard.set(token, forKey: "accessToken")
+                        self.startApp()
+                    } else {
+                        SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                    }
                 } else {
-                    SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
+                    var ErrorString = "CONNECTION_ERROR".localized()
+                    if let sCode = response.response?.statusCode {
+                        ErrorString = ErrorString + " \(sCode)"
+                    }
+                    ErrorString = ErrorString + " \(resultString)"
+                    SVProgressHUD.showError(withStatus: "\(ErrorString)")
                 }
-            } else {
-                var ErrorString = "CONNECTION_ERROR".localized()
-                if let sCode = response.response?.statusCode {
-                    ErrorString = ErrorString + " \(sCode)"
-                }
-                ErrorString = ErrorString + " \(resultString)"
-                SVProgressHUD.showError(withStatus: "\(ErrorString)")
             }
         }
+        
     }
     
     func startApp(){

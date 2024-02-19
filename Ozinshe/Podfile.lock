@@ -12,6 +12,7 @@ PODS:
   - SnapKit (5.6.0)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.1)
+  - youtube-ios-player-helper (1.0.4)
 
 DEPENDENCIES:
   - Alamofire
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - SnapKit (~> 5.6.0)
   - SVProgressHUD
   - SwiftyJSON
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - SwiftyJSON
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
@@ -37,7 +40,8 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: a95dddbb86701dcc6b03976e38544af1a13f6940
+PODFILE CHECKSUM: e1516fe3ec537a5214afe1ed7169f63cdb511912
 
 COCOAPODS: 1.12.1

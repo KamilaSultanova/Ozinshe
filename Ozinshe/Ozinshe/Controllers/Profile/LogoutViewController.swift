@@ -28,7 +28,6 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
         return line
     }()
     let logoutLabel = {
-            
         let label = UILabel()
         label.text = "EXIT".localized()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
@@ -38,7 +37,6 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
     
     let questionLabel = {
-        
         let label = UILabel()
         label.text = "CONFIRMATION".localized()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 16)
@@ -50,9 +48,7 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
     
     let yesButton = {
         let button = UIButton()
-        
         button.setTitle("YES_BUTTON".localized(), for: .normal)
-    
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.addTarget(self, action: #selector(logOut), for: .touchUpInside)
@@ -65,14 +61,12 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
         
     let noButton = {
         let button = UIButton()
-        
         button.setTitle("NO_BUTTON".localized(), for: .normal)
         if button.isSelected {
             button.setTitleColor(.white, for: .selected)
             button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         }
-      
-        button.setTitleColor(UIColor(red: 0.33, green: 0.08, blue: 0.78, alpha: 1), for: .normal)
+            button.setTitleColor(UIColor(red: 0.33, green: 0.08, blue: 0.78, alpha: 1), for: .normal)
         button.backgroundColor = UIColor(named: "TabBarColor")
         button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 16)
@@ -92,8 +86,8 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
         tap.delegate = self
         view.addGestureRecognizer(tap)
         
-            
         setupUI()
+        setupConstraints()
     }
     
     func setupUI(){
@@ -103,8 +97,9 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(questionLabel)
         view.addSubview(yesButton)
         view.addSubview(noButton)
-            
-
+    }
+    
+    func setupConstraints(){
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(303)
             make.horizontalEdges.equalToSuperview()
@@ -177,7 +172,7 @@ class LogoutViewController: UIViewController, UIGestureRecognizerDelegate {
    @objc func logOut(_ sender: Any) {
         UserDefaults.standard.removeObject(forKey: "accessToken")
     
-        let rootVC = SignInViewController()
+        let rootVC = UINavigationController(rootViewController: SignInViewController())
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = rootVC

@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class ProfileViewController: UIViewController, LanguageProtocol {
     
+    //MARK: adding UI elements
     
     let avatar: UIImageView = {
         let iv = UIImageView()
@@ -94,99 +95,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
     }()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view.
-        view.backgroundColor = UIColor(named: "BackgroundColor")
-        navigationItem.title = "PROFILE".localized()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
-        
-        
-        setupUI()
-        loadUserData()
-        
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        languageDidChange()
-    }
-    
-    func languageDidChange() {
-        if let label = personalDataButton.viewWithTag(1002) as? UILabel {
-            label.text = "EDIT".localized()
-        }
-        if let label = languageButton.viewWithTag(1003) as? UILabel {
-            if Localize.currentLanguage() == "en"{
-                label.text = "English"
-            }
-            if Localize.currentLanguage() == "kk"{
-                label.text = "Қазақша"
-            }
-            if Localize.currentLanguage() == "ru"{
-                label.text = "Русский"
-            }
-        }
-        if let button = personalDataButton.viewWithTag(1004) as? UIButton {
-            button.setTitle("PERSONAL_DATA".localized(), for: .normal)
-        }
-        if let button = passwordButton.viewWithTag(1005) as? UIButton {
-            button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
-        }
-        if let button = languageButton.viewWithTag(1006) as? UIButton {
-            button.setTitle("LANGUAGE".localized(), for: .normal)
-        }
-        if let button = termsButton.viewWithTag(1007) as? UIButton {
-            button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
-        }
-        if let button = notificationButton.viewWithTag(1008) as? UIButton {
-            button.setTitle("NOTIFICATIONS".localized(), for: .normal)
-        }
-        if let button = DarkModeButton.viewWithTag(1008) as? UIButton {
-            button.setTitle("DARK_MODE".localized(), for: .normal)
-        }
-        titleLabel.text = "MY_PROFILE".localized()
-        navigationItem.title = "PROFILE".localized()
-        
-        
-    }
-    
-    func setupUI(){
-        
-        view.addSubview(avatar)
-        view.addSubview(titleLabel)
-        view.addSubview(emailLabel)
-        view.addSubview(settingsView)
-        
-        avatar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
-            make.centerX.equalToSuperview()
-        }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(avatar.snp.bottom).offset(24)
-            make.centerX.equalTo(avatar)
-        }
-        
-        emailLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.centerX.equalTo(avatar)
-        }
-        
-        settingsView.snp.makeConstraints { make in
-            make.top.equalTo(emailLabel.snp.bottom).offset(24)
-            make.horizontalEdges.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-    }
-    
-    //MARK: buttonsUI
+    //MARK: buttons UI
     
     lazy var personalDataButton = {
         
@@ -199,7 +108,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("PERSONAL_DATA".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.addTarget(self, action: #selector(personalDataTapped), for: .touchUpInside)
         button.contentHorizontalAlignment = .left
         button.tag = 1004
@@ -210,7 +119,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         label.tag = 1002
         label.text = "EDIT".localized()
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         
         view.addSubview(lineView)
@@ -253,7 +162,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(passwordTapped), for: .touchUpInside)
         button.tag = 1005
@@ -299,7 +208,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("LANGUAGE".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(languageShow), for: .touchUpInside)
         button.tag = 1006
@@ -309,7 +218,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         iv.image = UIImage(named: "arrow")
         
         
-        label.font = UIFont(name: "SFProDisplay-Regular", size: 12)
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 12)
         label.textColor = UIColor(red: 0.61, green: 0.64, blue: 0.69, alpha: 1)
         label.tag = 1003
         label.text = "Select"
@@ -354,7 +263,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.addTarget(self, action: #selector(termsClicked), for: .touchUpInside)
         button.tag = 1007
@@ -400,7 +309,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("NOTIFICATIONS".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.tag = 1008
         
@@ -443,7 +352,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         
         button.setTitle("DARK_MODE".localized(), for: .normal)
         button.setTitleColor(UIColor(named: "ProfileColorSet"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 16)
+        button.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 16)
         button.contentHorizontalAlignment = .left
         button.tag = 1009
         
@@ -469,17 +378,78 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         return view
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = "PROFILE".localized()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout"), style: .plain, target:self, action: #selector(logoutBtn))
+        languageDidChange()
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = ""
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.tintColor = UIColor(named: "arrowColor")
+
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor(named: "TabBarColor")
+        
+        setupUI()
+        setupConstraints()
+        loadUserData()
+        
+    }
+    
+    //MARK: adding constraints to the UI elements
+    func setupUI(){
+        
+        view.addSubview(avatar)
+        view.addSubview(titleLabel)
+        view.addSubview(emailLabel)
+        view.addSubview(settingsView)
+    }
+    
+    func setupConstraints(){
+        avatar.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.centerX.equalToSuperview()
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(avatar.snp.bottom).offset(24)
+            make.centerX.equalTo(avatar)
+        }
+        
+        emailLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.centerX.equalTo(avatar)
+        }
+        
+        settingsView.snp.makeConstraints { make in
+            make.top.equalTo(emailLabel.snp.bottom).offset(24)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
     //MARK: Buttons actions
     
     @objc func personalDataTapped(){
         let personalVC = PersonalDataViewController()
-        
+
         navigationController?.show(personalVC, sender: self)
     }
     
     @objc func passwordTapped(){
         let passwordVC = PasswordViewController()
-        
+      
         navigationController?.show(passwordVC, sender: self)
         
     }
@@ -489,13 +459,13 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         languageVC.modalPresentationStyle = .overFullScreen
         
         languageVC.delegate = self
-        
+    
         present(languageVC, animated: true)
     }
     
     @objc func termsClicked() {
         let termsVC = TermsViewController()
-        
+     
         navigationController?.show(termsVC, sender: self)
     }
     
@@ -503,7 +473,7 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         let logoutVC = LogoutViewController()
         
         logoutVC.modalPresentationStyle = .overFullScreen
-        
+
         present(logoutVC, animated: true)
     }
     
@@ -569,5 +539,41 @@ class ProfileViewController: UIViewController, LanguageProtocol {
         }
     }
     
-    
+    //MARK: Language changing function
+        func languageDidChange() {
+            if let label = personalDataButton.viewWithTag(1002) as? UILabel {
+                label.text = "EDIT".localized()
+            }
+            if let label = languageButton.viewWithTag(1003) as? UILabel {
+                if Localize.currentLanguage() == "en"{
+                    label.text = "English"
+                }
+                if Localize.currentLanguage() == "kk"{
+                    label.text = "Қазақша"
+                }
+                if Localize.currentLanguage() == "ru"{
+                    label.text = "Русский"
+                }
+            }
+            if let button = personalDataButton.viewWithTag(1004) as? UIButton {
+                button.setTitle("PERSONAL_DATA".localized(), for: .normal)
+            }
+            if let button = passwordButton.viewWithTag(1005) as? UIButton {
+                button.setTitle("CHANGE_PASSWORD".localized(), for: .normal)
+            }
+            if let button = languageButton.viewWithTag(1006) as? UIButton {
+                button.setTitle("LANGUAGE".localized(), for: .normal)
+            }
+            if let button = termsButton.viewWithTag(1007) as? UIButton {
+                button.setTitle("TERM_&_CONDITIONS".localized(), for: .normal)
+            }
+            if let button = notificationButton.viewWithTag(1008) as? UIButton {
+                button.setTitle("NOTIFICATIONS".localized(), for: .normal)
+            }
+            if let button = DarkModeButton.viewWithTag(1008) as? UIButton {
+                button.setTitle("DARK_MODE".localized(), for: .normal)
+            }
+            titleLabel.text = "MY_PROFILE".localized()
+            navigationItem.title = "PROFILE".localized()
+        }
 }

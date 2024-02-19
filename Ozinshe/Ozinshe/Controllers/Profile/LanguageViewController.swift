@@ -15,8 +15,6 @@ protocol LanguageProtocol{
 
 class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
     
-   
-    
     var languageArray = [["English", "en"], ["Қазақша", "kk"], ["Русский", "ru"]]
     
     var delegate: LanguageProtocol?
@@ -38,7 +36,6 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
         return line
     }()
     let languageLabel = {
-        
         let label = UILabel()
         label.text = "LANGUAGE".localized()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 24)
@@ -49,14 +46,11 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
     
     
     lazy var tableview = {
-
         let tv = UITableView()
-
         tv.dataSource = self
         tv.delegate = self
         tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-
         return tv
     }()
     
@@ -67,6 +61,7 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
         view.backgroundColor = .black.withAlphaComponent(0.3)
         
         setupUI()
+        setupConstraints()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissView))
         tap.delegate = self
@@ -78,9 +73,9 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
         view.addSubview(lineView)
         view.addSubview(tableview)
         view.addSubview(languageLabel)
-        
-
-        
+    }
+    
+    func setupConstraints(){
         backgroundView.snp.makeConstraints { make in
             make.height.equalTo(303)
             make.horizontalEdges.equalToSuperview()
@@ -115,7 +110,6 @@ class LanguageViewController: UIViewController , UIGestureRecognizerDelegate{
             return false
         }
             return true
-        
     }
 
 }
@@ -127,6 +121,7 @@ extension LanguageViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = UIColor(named: "TabBarColor")
         
         let label = UILabel()
         label.text = languageArray[indexPath.row][0]
@@ -177,7 +172,5 @@ extension LanguageViewController: UITableViewDelegate,UITableViewDataSource{
         
         print("Selected language: \(Localize.currentLanguage())")
         dismiss(animated: true)
-        
     }
-    
 }

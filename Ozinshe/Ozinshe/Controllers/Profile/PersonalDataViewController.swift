@@ -14,10 +14,7 @@ import Alamofire
 class PersonalDataViewController: UIViewController {
     
     lazy var infoView = {
-        
         let view = UIView()
-        
-        
         view.addSubview(nameView)
         view.addSubview(emailView)
         view.addSubview(phoneView)
@@ -48,15 +45,12 @@ class PersonalDataViewController: UIViewController {
             make.top.equalTo(phoneView.snp.bottom)
         }
         
-        
         return view
         
     }()
     
     let saveButton = {
-        
         let button = UIButton()
-        
         button.setTitle("SAVE_BUTTON".localized(), for: .normal)
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 16)
@@ -69,7 +63,6 @@ class PersonalDataViewController: UIViewController {
     }()
     
     lazy var nameView = {
-        
         let view = UIView()
         let label = UILabel()
         let tf = UITextField()
@@ -111,7 +104,7 @@ class PersonalDataViewController: UIViewController {
     }()
     
     lazy var emailView = {
-        
+    
         let view = UIView()
         let label = UILabel()
         let tf = UITextField()
@@ -242,19 +235,12 @@ class PersonalDataViewController: UIViewController {
 
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.title = "PERSONAL_DATA".localized()
-        let backButton = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: self, action: #selector(backButtonClicked))
-        backButton.tintColor = UIColor(named: "arrowColor")
-        navigationItem.leftBarButtonItem = backButton
-        
         tabBarController?.tabBar.isHidden = true
         
         setupUI()
+        setupConstraints()
         hideKeyboardWhenTapped()
         loadUserData()
-    }
-    
-    @objc func backButtonClicked(){
-        navigationController?.popToRootViewController(animated: true)
     }
     
     func hideKeyboardWhenTapped(){
@@ -270,7 +256,9 @@ class PersonalDataViewController: UIViewController {
         
         view.addSubview(infoView)
         view.addSubview(saveButton)
-        
+    }
+    
+    func setupConstraints(){
         infoView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(24)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -364,9 +352,6 @@ class PersonalDataViewController: UIViewController {
             "language": language,
             "name": name,
             "phoneNumber": phone,
-            //              "user": [
-            //                    "email": email
-            //                ]
         ]
 
         let headers: HTTPHeaders = [

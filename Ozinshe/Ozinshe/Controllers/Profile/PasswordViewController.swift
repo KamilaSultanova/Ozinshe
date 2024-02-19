@@ -14,7 +14,6 @@ import SwiftyJSON
 class PasswordViewController: UIViewController {
     
     let passwordLabel = {
-        
         let label = UILabel()
         label.text = "PASSWORD".localized()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
@@ -29,6 +28,7 @@ class PasswordViewController: UIViewController {
         
         tf.placeholder = "ENTER_PASSWORD".localized()
         tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -51,7 +51,6 @@ class PasswordViewController: UIViewController {
     }()
     
     let repeatLabel = {
-        
         let label = UILabel()
         label.text = "REPEAT_PASSWORD".localized()
         label.font = UIFont(name: "SFProDisplay-Bold", size: 14)
@@ -66,6 +65,7 @@ class PasswordViewController: UIViewController {
         
         tf.placeholder = "ENTER_PASSWORD".localized()
         tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -89,7 +89,6 @@ class PasswordViewController: UIViewController {
     
     let showButton1 = {
         let showBtn = UIButton()
-        
         showBtn.setImage(UIImage(named: "Show"), for: .normal)
         showBtn.addTarget(self, action: #selector(showPassword), for: .touchDown)
  
@@ -98,7 +97,6 @@ class PasswordViewController: UIViewController {
     
     let showButton2 = {
         let showBtn = UIButton()
-        
         showBtn.setImage(UIImage(named: "Show"), for: .normal)
         showBtn.addTarget(self, action: #selector(showPassword), for: .touchDown)
         
@@ -109,7 +107,6 @@ class PasswordViewController: UIViewController {
     
     let saveButton = {
         let button = UIButton()
-        
         button.setTitle("SAVE_BUTTON".localized(), for: .normal)
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 16)
@@ -122,18 +119,12 @@ class PasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = UIColor(named: "BackgroundColor")
         navigationItem.title = "PASSWORD_PAGE".localized()
-        let backButton = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: self, action: #selector(backButtonClicked))
-        backButton.tintColor = UIColor(named: "arrowColor")
-        navigationItem.leftBarButtonItem = backButton
-
-        
         tabBarController?.tabBar.isHidden = true
         
         setupUI()
-        
+        setupConstraints()
         hideKeyboardWhenTapped()
     }
     
@@ -146,7 +137,9 @@ class PasswordViewController: UIViewController {
         view.addSubview(saveButton)
         view.addSubview(showButton1)
         view.addSubview(showButton2)
-        
+    }
+    
+    func setupConstraints(){
         passwordLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(21)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -190,11 +183,6 @@ class PasswordViewController: UIViewController {
         }
     }
     
-    
-    @objc func backButtonClicked(){
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
     func hideKeyboardWhenTapped(){
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -224,8 +212,6 @@ class PasswordViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        
-        
         
         if textfield1.text! == textfield2.text!{
             

@@ -38,6 +38,7 @@ class SignUpViewController: UIViewController {
         
         tf.placeholder = "ENTER_EMAIL".localized()
         tf.font = UIFont(name: "SFProDisplay-Regular", size: 16)
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -63,6 +64,7 @@ class SignUpViewController: UIViewController {
         let passwordIV = UIImageView()
         
         tf.placeholder = "ENTER_PASSWORD".localized()
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -89,6 +91,7 @@ class SignUpViewController: UIViewController {
         let passwordIV = UIImageView()
         
         tf.placeholder = "ENTER_PASSWORD".localized()
+        tf.backgroundColor = UIColor(named: "TabBarColor")
         tf.layer.cornerRadius = 12
         tf.layer.borderWidth = 1
         tf.layer.borderColor = UIColor(red: 0.90, green: 0.92, blue: 0.94, alpha: 1.00).cgColor
@@ -112,7 +115,6 @@ class SignUpViewController: UIViewController {
     
     let showButton1 = {
         let showBtn = UIButton()
-        
         showBtn.setImage(UIImage(named: "Show"), for: .normal)
         showBtn.addTarget(self, action: #selector(showPassword), for: .touchDown)
  
@@ -121,7 +123,6 @@ class SignUpViewController: UIViewController {
     
     let showButton2 = {
         let showBtn = UIButton()
-        
         showBtn.setImage(UIImage(named: "Show"), for: .normal)
         showBtn.addTarget(self, action: #selector(showPassword), for: .touchDown)
         
@@ -196,7 +197,6 @@ class SignUpViewController: UIViewController {
     
     let saveButton = {
         let button = UIButton()
-        
         button.setTitle("REGISTER".localized(), for: .normal)
         button.backgroundColor = UIColor(red: 0.5, green: 0.18, blue: 0.99, alpha: 1)
         button.titleLabel?.font = UIFont(name: "SFProDisplay-Bold", size: 16)
@@ -210,7 +210,6 @@ class SignUpViewController: UIViewController {
     let questionLabel = {
         
         let label = UILabel()
-        
         label.textColor = UIColor(red: 0.42, green: 0.45, blue: 0.5, alpha: 1)
         label.text = "HAVE_ACCOUNT".localized()
         label.font = UIFont(name: "SFProDisplay-Regular", size: 14)
@@ -221,7 +220,6 @@ class SignUpViewController: UIViewController {
     }()
     
     let logInBtn = {
-        
         let button = UIButton()
         button.setTitleColor(UIColor(red: 0.7, green: 0.46, blue: 0.97, alpha: 1), for: .normal)
         button.setTitle("LOG_IN".localized(), for: .normal)
@@ -234,13 +232,10 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         view.backgroundColor = UIColor(named: "BackgroundColor")
-        let backButton = UIBarButtonItem(image: UIImage(named: "BackButton"), style: .plain, target: self, action: #selector(backButtonClicked))
-        backButton.tintColor = UIColor(named: "arrowColor")
-        navigationItem.leftBarButtonItem = backButton
-        
+
         setupUI()
+        setupConstraints()
         hideKeyboardWhenTapped()
     }
     
@@ -254,8 +249,9 @@ class SignUpViewController: UIViewController {
         view.addSubview(logInBtn)
         view.addSubview(showButton1)
         view.addSubview(showButton2)
-        
-        
+    }
+    
+    func setupConstraints(){
         signUpLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.horizontalEdges.equalToSuperview().inset(24)
@@ -299,15 +295,10 @@ class SignUpViewController: UIViewController {
         }
 
         logInBtn.snp.makeConstraints { make in
-//            make.top.equalTo(questionLabel)
             make.right.equalToSuperview().inset(24)
             make.centerY.equalTo(questionLabel)
 
         }
-    }
-        
-    @objc func backButtonClicked(){
-        navigationController?.popToRootViewController(animated: true)
     }
         
         @objc func textEditDidBegin(_ sender: TextFieldWithPadding) {
@@ -353,7 +344,6 @@ class SignUpViewController: UIViewController {
             }
             
             if response.response?.statusCode == 200 {
-//                InvalidInput()
                 let json = JSON(response.data!)
                 print("JSON: \(json)")
                 
@@ -362,11 +352,9 @@ class SignUpViewController: UIViewController {
                     UserDefaults.standard.set(token, forKey: "accessToken")
                     self.startApp()
                 } else {
-//                    self.InvalidInput()
                     SVProgressHUD.showError(withStatus: "CONNECTION_ERROR".localized())
                 }
             } else {
-//                InvalidInput()
                 var ErrorString = "CONNECTION_ERROR".localized()
                 if let sCode = response.response?.statusCode {
                     ErrorString = ErrorString + " \(sCode)"

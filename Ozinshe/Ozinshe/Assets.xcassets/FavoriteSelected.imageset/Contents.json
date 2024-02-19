@@ -11,7 +11,8 @@
           "value" : "dark"
         }
       ],
-      "filename" : "FavoriteSelected.pdf",
+      "compression-type" : "automatic",
+      "filename" : "favorite-dark.pdf",
       "idiom" : "universal"
     }
   ],
@@ -20,7 +21,7 @@
     "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true,
+    "compression-type" : "automatic",
     "template-rendering-intent" : "original"
   }
 }
