@@ -162,7 +162,7 @@ extension SeasonsSeriesViewController: UICollectionViewDelegate, UICollectionVie
         let playerVC = MoviePlayerViewController()
         
         playerVC.video_link = seasons[currentSeason].videos[indexPath.row].link
-     
+        playerVC.movieId = seasons[currentSeason].movieId
         navigationController?.show(playerVC, sender: self)
     }
     

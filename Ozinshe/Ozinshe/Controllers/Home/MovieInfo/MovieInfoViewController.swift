@@ -657,6 +657,7 @@ class MovieInfoViewController: UIViewController {
             let playerVC = MoviePlayerViewController()
 
             playerVC.video_link = movie.video_link
+            playerVC.movieId = movie.id
             
             navigationController?.show(playerVC, sender: self)
         }else{

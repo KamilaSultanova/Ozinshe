@@ -16,11 +16,15 @@ class MoviePlayerViewController: UIViewController {
     
     var video_link = ""
     
-     let player = {
+    var movieId: Int = 0
+    
+    var watchedMovies:[Movie] = []
+    
+    let player = {
         let view = YTPlayerView()
         view.backgroundColor = UIColor(named: "BackgroundColor")
-         view.contentMode = .scaleAspectFill
-         
+        view.contentMode = .scaleAspectFill
+        
         return view
     }()
     
@@ -29,6 +33,8 @@ class MoviePlayerViewController: UIViewController {
         setupUI()
         setupConstraints()
         player.load(withVideoId: video_link)
+        print()
+        saveWatchHistory(ID: movieId)
     }
     
     func setupUI(){
@@ -37,6 +43,36 @@ class MoviePlayerViewController: UIViewController {
     func setupConstraints(){
         player.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    func saveWatchHistory(ID: Int){
+        
+        let parameters: [String: Any] = [
+            "movieId": movieId,
+            "timeCode": 0
+        ]
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(Storage.sharedInstance.accessToken)"
+        ]
+        print("\(movieId)")
+        
+        print("Bearer is \(Storage.sharedInstance.accessToken)")
+        
+        AF.request(Urls.ADD_USER_HISTORY_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseData { response in
+                switch response.result {
+                case .success(let data):
+                    let json = JSON(data)
+                    print("JSON: \(json)")
+                    let watchedMovie = Movie(json: json)
+                    
+                    watchedMovie.timing = 0
+                    
+                    self.watchedMovies.append(watchedMovie)
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
         }
     }
 }
